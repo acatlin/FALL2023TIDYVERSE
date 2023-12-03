@@ -51,7 +51,7 @@ code forthcoming!!!
 #Fomba
 Loaded Bright Spots
 
-# klussi
+# Kristin Lussi
 ggplot2 Capabilities
 * Demonstrates capabilities of ggplot2
 * https://github.com/acatlin/FALL2023TIDYVERSE/blob/main/lussi_ggplot2.rmd
@@ -66,6 +66,8 @@ Initial Description and Link:
 Data File:
 * https://github.com/acatlin/FALL2023TIDYVERSE/blob/main/guns-polls.csv
 
+Kristin Lussi's Extension:
+* Demostrates how to use geom_density() and geom_bar()
 
 # Marley Myrianthopoulos
 ### dplyr, select, filter, arrange
