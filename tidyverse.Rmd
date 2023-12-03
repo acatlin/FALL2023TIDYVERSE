@@ -107,6 +107,50 @@ ggplot(guns_polls, aes(`Republican Support`, poll_length)) +
 cor(guns_polls$`Republican Support`, guns_polls$poll_length)
 ```
 
+## geom_density() Demonstration
+
+What questions did both parties have similar support patterns for? To answer this question, I will display a density plot for each question. Each density plot provides the density for each party: democratic and republican. 
+
+Based on the below density plots, the questions where both parties had the most similar support patterns were background-checks and mental-health-own-guns.
+
+```{r, warning = FALSE, message = FALSE}
+guns_polls_long <- gather(guns_polls, key = "Party", value = "Support", `Democratic Support`, `Republican Support`)
+
+ggplot(guns_polls_long, aes(x = Support, fill = Party)) +
+  facet_wrap(~Question) +
+  geom_density(alpha = .3) +
+  labs(
+    title = "Support Distributions for Each Question",
+    x = "Support Percentage",
+    y = "Density"
+  ) +
+  # center and bold title 
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+```
+
+## geom_bar() Demonstration
+
+What is the most common poll length? To answer this question, I will demonstrate with a bar graph.
+
+From the below bar plot, the most common poll length is 2. 
+
+```{r}
+ggplot(guns_polls) +
+  geom_bar(aes(x = poll_length, fill = Question)) +
+  labs(
+    title = "Poll Length Frequency",
+    x = "Poll Length",
+    y = "Count"
+  ) +
+  # center and bold title 
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5)
+  )
+
+```
+
 
 ## Sources:
 
