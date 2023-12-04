@@ -80,6 +80,8 @@ Initial Description and Link:
 * Demonstrates how to use select, filter, and arrange to display a subset of data from a data frame.
 * https://github.com/acatlin/FALL2023TIDYVERSE/blob/main/marley_myrianthopoulos_tidyverse_create.Rmd
 
+### Extend Assigment:
+* Adds to Michael Robinson's work by explaining how the piping operator can be used to perform multiple data transforms, demonstrating alternative methods, and showing that the results are the same.
 
 # Sean Amato
 ### mutate() and across()
