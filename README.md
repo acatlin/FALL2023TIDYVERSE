@@ -1,3 +1,5 @@
+
+=======
 Vignette Title: Analyzing Spotify Track Data with Tidyverse
 
 Vignette Purpose:
@@ -36,6 +38,7 @@ By following through this vignette, users will be able to understand how to empl
 # Souleymane Doumbia
 
 
+
 Initial Description and Link: 
 
 Revision/Addition Description and Link:
@@ -71,13 +74,6 @@ Data File:
 * https://github.com/acatlin/FALL2023TIDYVERSE/blob/main/guns-polls.csv
 
 
-### Extension of stringr from Molly's assignment: str_locate(), str_split_fixed(), and str_glue()
-Initial Description and Link:
-* Demonstrates how to use str_locate(), str_split_fixed(), and str_glue() to modify strings in a data frame.
-* https://github.com/acatlin/FALL2023TIDYVERSE/blob/main/julia_ferris_extend.Rmd
-=======
-
-
 # Marley Myrianthopoulos
 ### dplyr, select, filter, arrange
 Initial Description and Link:
@@ -92,17 +88,10 @@ Initial Description and Link:
 * https://github.com/acatlin/FALL2023TIDYVERSE/blob/main/sean_amato_tidyverse_create.rmd
 
 Data Source:
-* https://www.kaggle.com/datasets/iamsouravbanerjee/years-of-schooling-worldwide/
+* https://www.kaggle.com/datasets/iamsouravbanerjee/years-of-schooling-worldwide/  
 
-For the tidyverse extend I improved David Greer's vignette.
 
-# Molly Siebecker
-### str_to_lower, str_length, str_sort, str_detect, str_count
-Initial Description and Link:
-* Demonstrates how to use str_to_lower, str_length, str_sort, str_detect, and str_count to manipulate character strings.
-* https://github.com/mollysiebecker/FALL2023TIDYVERSE/blob/main/molly_siebecker_tidyverse_create.Rmd
-* Data Source: "babynames" data set in base r
-
+=======
 Extension:
 *https://github.com/acatlin/FALL2023TIDYVERSE/blob/main/molly_siebecker_tidyverse_extend.Rmd
 *Demonstrates additional aesthetic features of ggplot2 using Fomba's examples.
@@ -134,3 +123,9 @@ Extended the demonstratration/description of the ggplot2 package for visualizati
 * Provided the code and explained the use of Box Plot, Histogram, Density Plot, and Bar Plot in data visualization and analysis.
 * Provided an explaination of each of the ggplot functions used.
 
+
+# Frederick Jones
+### ggplot, geom_point(), geom_snooth(), datatable(), mutate(), summarize()
+Initial Description and Link: 
+* Demonstrate how to use ggplot, geom_point(), geom_snooth(), datatable(), mutate(), summarize()
+* Example extended from https://github.com/acatlin/FALL2023TIDYVERSE/blob/main/tidyverse_healthcare.Rmd
