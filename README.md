@@ -62,6 +62,17 @@ Loaded Bright Spots
 ggplot2 Capabilities
 * Demonstrates capabilities of ggplot2
 * https://github.com/acatlin/FALL2023TIDYVERSE/blob/main/lussi_ggplot2.rmd
+* Update to TidyVerse Vignette: ggplot2 and Student Stress Factors
+Date: 12/04/2023
+I've extended the existing ggplot2 vignette, originally focusing on the "Student Stress Factors" dataset. My contribution includes:
+
+New Section on Scatter Plot Analysis: Added an exploratory section that demonstrates how to create a scatter plot using ggplot2. This plot investigates the relationship between 'Sleep Quality' and 'Stress Level' in students, providing deeper insights into the dataset.
+
+Enhanced Conclusion: Updated the final conclusion to encapsulate both the original content and the new scatter plot analysis, highlighting the importance of visual data exploration in revealing trends and relationships.
+
+This update aims to enrich the existing vignette by offering a more comprehensive view of the dataset through ggplot2 visualizations.
+
+This is my R makdown (Rmd file which include my extension at the bottom of KLussi): https://github.com/Doumgit/TidyVerse_Extend/blob/main/Souleymane_Tidyverse_Extend.Rmd
 
 # Julia Ferris 
 ### ggplot2, geom_violin(), geom_density_2d(), and geom_rug()
