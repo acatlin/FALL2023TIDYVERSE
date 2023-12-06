@@ -1,0 +1,60 @@
+---
+title: "marley_myrianthopoulos_tidyverse_extend"
+author: "Marley Myrianthopoulos"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Summary
+
+This is an extension of Michael Robinson's tidyverse assignment, which demonstrated how to use filter, arrange, group_by, and summarise. I will extend his work by demonstrating further use of the piping operator to perform multiple transforms simultaneously, and demonstrate that the results are the same.
+
+```{r}
+library(tidyverse)
+
+patient_data <- read_csv("https://raw.githubusercontent.com/MRobinson112/tidy_verse/main/healthcare_dataset.csv")
+
+```
+
+
+
+## Piping Operator
+
+The piping operator, "%>%" is used to take the output of one data transform and use it as the input of the next. This can be very useful if a number of transforms need to be procedurally applied. Michael demonstrates one method of multiple filtering below, and I will demonstrate another using multiple piping operators. An alternative (and less efficient) method is to create a new data frame for each transform.
+```{r}
+
+# Michael's method to filter all patients over 50 that are male 
+male_patients_over_50_Michael <- patient_data %>%
+  filter(Gender == "Male", Age > 50)
+
+# My method to filter all patients over 50 that are male
+male_patients_over_50_Marley <- patient_data %>%
+  filter(Gender == "Male") %>%
+  filter(Age > 50)
+
+#Alternative Inefficient Method: This is what the piping operator is short-cutting.
+male_patients <- patient_data %>%
+  filter(Gender == "Male")
+#Notice that the next line uses the male_patients data frame as its input, rather than patient_data
+male_patients_over_50_alternative <- male_patients %>%
+  filter(Age > 50)
+
+#Order doesn't matter with multiple filters so we can reverse them
+male_patients_over_50_Marley_2 <- patient_data %>%
+  filter(Age > 50) %>%
+  filter(Gender == "Male")
+
+patients_over_50 <- patient_data %>%
+  filter(Age > 50)
+male_patients_over_50_alternative_2 <- patients_over_50 %>%
+  filter(Gender == "Male")
+
+# Observe that the outputs are identical for all of these different approaches
+
+glimpse(male_patients_over_50_Michael)
+glimpse(male_patients_over_50_Marley)
+glimpse(male_patients_over_50_Marley_2)
+glimpse(male_patients_over_50_alternative)
+glimpse(male_patients_over_50_alternative_2)
+
+```

@@ -1,0 +1,117 @@
+---
+title: "Tidyverse Extend"
+author: "Molly Siebecker"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(readr)
+spotify_data <- read_csv(url('https://raw.githubusercontent.com/acatlin/FALL2023TIDYVERSE/main/spotify_songs.csv'))
+```
+
+# Initial Code
+
+The code below was provided by Fomba Kassoh. He demonstrated multiple examples of using ggplot2. I will extend only one of his examples, that of creating a box plot, to show how additional ggplot2 aesthetic features may be applied.
+
+```{r}
+library(ggplot2)
+
+# Assuming your data is in a data frame named 'df'
+p <- ggplot(spotify_data, aes(x = playlist_genre, y = track_popularity)) + 
+  geom_boxplot() +
+  theme_minimal() + 
+  labs(title = "Distribution of Track Popularity by Playlist Genre",
+       x = "Playlist Genre",
+       y = "Track Popularity")
+
+print(p)
+```
+
+# Extension
+
+Below I will recreate Fomba's boxplot and add additional layers to the code.
+
+We could opt to change the coordinate system, in this case, flipping the x- and y-axes, using coord_flip().
+```{r}
+## coordinate system
+ggplot(spotify_data, aes(x = playlist_genre, y = track_popularity)) + 
+  geom_boxplot() +
+  theme_minimal() + 
+  coord_flip() +
+  labs(title = "Distribution of Track Popularity by Playlist Genre",
+       x = "Playlist Genre",
+       y = "Track Popularity")
+```
+ 
+We can also select from pre-set color palettes, using "fill" and "scale_fill_brewer."
+
+```{r}
+
+## view available color palettes
+
+RColorBrewer::display.brewer.all()
+
+## add color palette
+ggplot(spotify_data, aes(x = playlist_genre, y = track_popularity, fill = playlist_genre)) + 
+  geom_boxplot() +
+  theme_minimal() + 
+  coord_flip() +
+  scale_fill_brewer(palette = "YlOrRd")+
+  labs(title = "Distribution of Track Popularity by Playlist Genre",
+       x = "Playlist Genre",
+       y = "Track Popularity")
+```
+
+We could even change the background using theme, which was previously set to theme_minimal.
+
+```{r}
+ggplot(spotify_data, aes(x = playlist_genre, y = track_popularity, fill = playlist_genre)) + 
+  geom_boxplot() +
+  theme_dark() + 
+  coord_flip() +
+  scale_fill_brewer(palette = "YlOrRd")+
+  labs(title = "Distribution of Track Popularity by Playlist Genre",
+       x = "Playlist Genre",
+       y = "Track Popularity")
+```
+
+We could also remove the legend using "guides," since it is not adding any new information.
+
+```{r}
+ggplot(spotify_data, aes(x = playlist_genre, y = track_popularity, fill = playlist_genre)) + 
+  geom_boxplot() +
+  theme_dark() + 
+  coord_flip() +
+  guides(fill = "none") +
+  scale_fill_brewer(palette = "YlOrRd")+
+  labs(title = "Distribution of Track Popularity by Playlist Genre",
+       x = "Playlist Genre",
+       y = "Track Popularity")
+```
+
+Finally, in addition to the title and x- and y-axis labels, we can add a subtitle and caption.
+
+```{r}
+ggplot(spotify_data, aes(x = playlist_genre, y = track_popularity, fill = playlist_genre)) + 
+  geom_boxplot() +
+  theme_dark() + 
+  coord_flip() +
+  guides(fill = "none") +
+  scale_fill_brewer(palette = "YlOrRd")+
+  labs(title = "Most Popular Genres",
+       x = "Playlist Genre",
+       y = "Track Popularity",
+       subtitle = "Distribution of Track Popularity by Playlist Genre",
+       caption = "Pop, Latin songs achieve greatest median popularity.")
+```
+
+# Conclusion
+
+The ability to add layers in ggplot2 provides numerous opportunities for customization. There are additional aesthetic arguments not demonstrated here, as they would not be appropriate for this example.  
