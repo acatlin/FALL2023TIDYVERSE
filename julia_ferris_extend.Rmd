@@ -58,8 +58,7 @@ sorted_names <- babynames %>%
 str_detect is used to detect a pattern match, but it returns a logical vector instead of the match itself. This makes it useful for filtering a data frame. For example, you could filter for girls' names that end in "a" by using str_detect with a regex.
 ```{r}
 girls_names_end_a <- babynames %>%
-  filter(sex == "F") %>%
-  filter(str_detect(name, "a$"))
+ filter(sex == "F" & str_detect(name, "a$"))
 ```
 
 You could also, for example, look for names that contain at least one sequence of at least two of the same letter:
