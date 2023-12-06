@@ -1,0 +1,104 @@
+---
+title: "TidyVerse"
+author: "Frederick Jones"
+date: "2023-12-02"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(DT)
+```
+
+```{r}
+patient_data <- read_csv("https://raw.githubusercontent.com/MRobinson112/tidy_verse/main/healthcare_dataset.csv")
+
+
+datatable(patient_data, options = list(scrollX = TRUE))
+
+# filter all patients over 50
+patients_over_50 <- patient_data %>%
+  filter(Age > 50)
+
+# filter all patients over 50 that are male 
+male_patients_over_50 <- patient_data %>%
+  filter(Gender == "Male", Age > 50)
+
+         
+patients_sorted_by_admission <- patient_data %>%
+  arrange(`Date of Admission`)
+
+average_billing_by_condition <- patient_data %>%
+  group_by(`Medical Condition`) %>%
+  summarize(Average_Billing = mean(`Billing Amount`))
+
+average_billing_by_condition
+
+average_billing_by_condition <- patient_data %>%
+  group_by(`Medical Condition`) %>%
+  summarize(Average_Billing = mean(`Billing Amount`))
+
+average_billing_by_condition
+
+head(patients_sorted_by_admission)
+
+# Summary table for patient demographics
+demographics_summary <- patient_data %>%
+  group_by(Gender, `Insurance Provider`) %>%
+  summarize(
+    Average_Age = mean(Age, na.rm = TRUE),
+    Count = n()
+  ) %>%
+  ungroup()
+```
+
+```{r}
+# Display the summary table
+datatable(demographics_summary, options = list(scrollX = TRUE))
+
+# Histogram of Age Distribution by Gender
+ggplot(patient_data, aes(x = Age, fill = Gender)) +
+  geom_histogram(binwidth = 5, position = "dodge") +
+  labs(title = "Age Distribution by Gender", x = "Age", y = "Count") +
+  theme_minimal()
+
+# Counting occurrences of each medical condition
+condition_counts <- patient_data %>%
+  count(`Medical Condition`) %>%
+  arrange(desc(n))
+
+# Display top 5 medical conditions
+top_conditions <- head(condition_counts, 5)
+datatable(top_conditions, options = list(scrollX = TRUE))
+
+```
+
+```{r}
+# Creating age groups
+patient_data <- patient_data %>%
+  mutate(Age_Group = cut(Age, breaks = c(0, 18, 40, 65, 100), labels = c("0-18", "19-40", "41-65", "66-100")))
+
+# Average billing amount by age group
+billing_by_age_group <- patient_data %>%
+  group_by(Age_Group) %>%
+  summarize(Average_Billing = mean(`Billing Amount`, na.rm = TRUE))
+
+# Display the billing information by age group
+datatable(billing_by_age_group, options = list(scrollX = TRUE))
+```
+
+```{r}
+# Correlation plot between Age and Billing Amount
+ggplot(patient_data, aes(x = Age, y = `Billing Amount`)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", color = "blue") +
+  labs(title = "Correlation between Age and Billing Amount", x = "Age", y = "Billing Amount") +
+  theme_light()
+```

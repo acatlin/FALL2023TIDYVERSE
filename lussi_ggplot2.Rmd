@@ -1,6 +1,6 @@
 ---
 title: 'TidyVerse: ggplot2'
-author: "Kristin Lussi"
+author: "Original from 'Kristin Lussi', I Souleymane Doumbia added my work below this student conclusion"
 date: "2023-11-12"
 output:
   html_document: default
@@ -183,3 +183,40 @@ In this brief document, we explored how to create several types of plots in ggpl
 https://www.kaggle.com/datasets/samyakb/student-stress-factors
 
 https://ggplot2.tidyverse.org 
+
+
+# Souleymane Doumbia work start here:
+
+## Additional Analysis: Exploring Relationships Between Variables"
+
+### Exploring Relationships Between Variables
+In addition to individual distributions, it's insightful to explore relationships between different stress factors. Here, we will create a scatter plot to visualize the relationship between 'Sleep Quality' and 'Stress Level'.
+
+### Scatter Plot with ggplot2
+A scatter plot is a useful tool to understand how two variables relate to each other. It can help in identifying trends, clusters, and outliers in the dataset.
+
+```{r}
+# Creating a scatter plot for Sleep Quality vs Stress Level
+ggplot(data = stress_factors, aes(x = SleepQuality, y = StressLevel)) +
+  geom_point(aes(color = StressLevel), alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE) +
+  ggtitle("Relationship Between Sleep Quality and Stress Level") +
+  xlab("Sleep Quality") +
+  ylab("Stress Level") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+**In this plot:**
+***aes(x = SleepQuality, y = StressLevel)*** sets the axes.
+***geom_point()*** adds points to the plot, with their color indicating the stress level.
+***geom_smooth(method = "lm", se = FALSE)*** adds a linear regression line to help identify trends.
+***theme(legend.position = "none")*** removes the legend as it's redundant in this context.
+
+###Interpretation###
+The scatter plot allows us to observe if there is any apparent correlation between sleep quality and stress levels among students. The linear regression line gives a general trend, helping us to understand if better sleep quality is associated with lower stress levels, or vice versa.
+
+###Final Conclusion###
+This vignette has showcased the diverse capabilities of ggplot2 within the Tidyverse, using the "Student Stress Factors" dataset. We've seen how bar plots, violin plots, and density plots can visualize data distributions and frequencies. The addition of a scatter plot further enhances our analysis, revealing the relationship between sleep quality and stress levels among students.
+Our exploration underscores ggplot2's versatility in data visualization, from simple plots to more complex relational analyses. This tool is invaluable for uncovering hidden trends and making informed conclusions from datasets. Through this journey, we've demonstrated how effective visualizations can transform raw data into meaningful insights, essential for data-driven decision-making.
+
+* * *
