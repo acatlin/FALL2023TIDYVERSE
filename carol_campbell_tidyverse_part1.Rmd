@@ -190,8 +190,44 @@ Here we can clearly see that fiction-like books outnumber nonfiction-like books 
 ## Conclusion:
 Tidyverse contains a myriad of tools that allows us to easily analyze data, find insights and see correlations. Other possibilities include the ability to do linear regressions (not illustrated here due to time constraints), and other statistical functions.    
 
+## Extending this  Tidyverse code
+By Michael Robinson
+
+Question: Is there a Relationship Between Price and Rating?
+          Do more expensive books tend to have higher ratings? 
+I will use correlation analysis to reveal if there's a statistically significant relationship between the cost of a book and its customer rating.
+
+```{r}
+
+library(reshape2)
+
+amazon100m$published <- as.numeric(as.character(amazon100m$published))
+amazon100m$rating <- as.numeric(as.character(amazon100m$rating))
+amazon100m$price <- as.numeric(as.character(amazon100m$price))
+
+# Compute the correlation matrix
+correlation_matrix <- cor(amazon100m[, c("price", "rating", "published")], use = "complete.obs")
 
 
+# Melt the correlation matrix for visualization
+melted_correlation <- melt(correlation_matrix)
+
+# Create a heatmap
+ggplot(melted_correlation, aes(Var1, Var2, fill = value)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+                       midpoint = 0, limit = c(-1,1), space = "Lab", 
+                       name="Pearson\nCorrelation") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  xlab("") +
+  ylab("") +
+  ggtitle("Correlation Matrix")
+
+```
+## Conclusion
+
+The correlation between price and rating appears to be strongly negative, as indicated by the red color. This suggests that, contrary to what might be expected, higher prices do not correlate with higher ratings; in fact, it seems that as prices increase, ratings decrease, or vice versa.
 
 
 
